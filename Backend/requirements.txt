@@ -1,0 +1,6 @@
+Flask
+Flask-Cors
+SQLAlchemy
+mysql-connector-python
+pandas
+joblib
