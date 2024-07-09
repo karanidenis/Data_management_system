@@ -16,6 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `audits`
+--
+
+DROP TABLE IF EXISTS `audits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `audits` (
+  `audit_id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int DEFAULT NULL,
+  `store_id` int DEFAULT NULL,
+  `auditor_name` varchar(255) DEFAULT NULL,
+  `audit_date` date DEFAULT NULL,
+  `audit_time` time DEFAULT NULL,
+  PRIMARY KEY (`audit_id`),
+  KEY `product_id` (`product_id`),
+  KEY `store_id` (`store_id`),
+  CONSTRAINT `audits_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`products_id`),
+  CONSTRAINT `audits_ibfk_2` FOREIGN KEY (`store_id`) REFERENCES `stores` (`store_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `audits`
+--
+
+LOCK TABLES `audits` WRITE;
+/*!40000 ALTER TABLE `audits` DISABLE KEYS */;
+/*!40000 ALTER TABLE `audits` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `products`
 --
 
@@ -45,6 +76,32 @@ LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `stores`
+--
+
+DROP TABLE IF EXISTS `stores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `stores` (
+  `store_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`store_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `stores`
+--
+
+LOCK TABLES `stores` WRITE;
+/*!40000 ALTER TABLE `stores` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stores` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -55,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09 10:44:01
+-- Dump completed on 2024-07-09 11:19:10
